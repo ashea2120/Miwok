@@ -1,47 +1,29 @@
-Miwok App
-===================================
-
-This app displays lists of vocabulary words for the user to learn the Miwok language.
-Used in a Udacity course in the Beginning Android Nanodegree.
-
-Pre-requisites
---------------
-
-- Android SDK v23
-- Android Build Tools v23.0.2
-- Android Support Repository v23.3.0
-
-Getting Started
----------------
-
-This sample uses the Gradle build system. To build this project, use the
-"gradlew build" command or use "Import Project" in Android Studio.
-
-Support
--------
-
-- Google+ Community: https://plus.google.com/communities/105153134372062985968
-- Stack Overflow: http://stackoverflow.com/questions/tagged/android
-
-Patches are encouraged, and may be submitted by forking this project and
-submitting a pull request through GitHub. Please see CONTRIBUTING.md for more details.
-
-License
--------
-
-Copyright 2016 The Android Open Source Project, Inc.
-
-Licensed to the Apache Software Foundation (ASF) under one or more contributor
-license agreements.  See the NOTICE file distributed with this work for
-additional information regarding copyright ownership.  The ASF licenses this
-file to you under the Apache License, Version 2.0 (the "License"); you may not
-use this file except in compliance with the License.  You may obtain a copy of
-the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
-License for the specific language governing permissions and limitations under
-the License.
+# CE-450 Lab 4 (2019 Spring)
+---
+This repository is for Lab 4 submission.
+ 
+## 1.1 Miwok App
+ 
+This repo is for the following Practice Set:
+- Udacity Lesson 5, Lesson 1: Intents and Activities
+- Udacity Lesson 5, Lesson 2: Arrays, Lists, Loops, & Custom Classes
+- Udacity Lesson 5, Lesson 4: Images and Visual Polish
+- Udacity Lesson 5, Lesson 5: Activity LifeCycle and Audio Playback
+ 
+## Issues and Lessons
+ 
+A short description about the issues that you faced and the lessons that you learned.
+- Learned how to successfully import another project and update all necessary files in order to build
+  * Updating Gradle, build files, dependencies, etc.
+- Learned more in-depth explanations about Intents and connecting those to new Activities
+- Reinforced Java basic programming skills
+  * Interfaces, arrays vs. arraylists, lists, loops, and custom classes
+  * Used this new knowledge and implemented custom classes in the Miwok app: Adapters, Word, etc.
+- Reinforced how to add images to the app and how to correctly position them
+- Learned how to create an overrided constructor that some objects can use and others will not use
+- Learned about audio playback and what it all involves
+  * MediaPlayer class and the different states of it 
+  * Used this knowledge to add audio files for each word or phrase that will play when clicked
+  * Learned about the Audio Manager service
+---
+Written by Ashley Shea
