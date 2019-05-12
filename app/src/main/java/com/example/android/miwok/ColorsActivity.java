@@ -1,5 +1,6 @@
 package com.example.android.miwok;
 
+import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -55,6 +56,8 @@ public class ColorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_layout);
 
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
         //words
         final ArrayList<Word> words = new ArrayList<Word>();
         words.add(new Word("red", "weṭeṭṭi", R.drawable.color_red, R.raw.color_red));
@@ -74,20 +77,38 @@ public class ColorsActivity extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                // Get the {@link Word} object at the given position the user clicked on
-                Word word = words.get(position);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    // Release the media player if it currently exists because we are about to
+                    // play a different sound file
+                    releaseMediaPlayer();
 
-                // Create and setup the {@link MediaPlayer} for the audio resource associated
-                // with the current word
-                mMediaPlayer = MediaPlayer.create(ColorsActivity.this, word.getAudioResourceId());
+                    // Get the {@link Word} object at the given position the user clicked on
+                    Word word = words.get(position);
 
-                // Start the audio file
-                mMediaPlayer.start();
-            }
-        });
+                    // Request audio focus so in order to play the audio file. The app needs to play a
+                    // short audio file, so we will request audio focus with a short amount of time
+                    // with AUDIOFOCUS_GAIN_TRANSIENT.
+                    int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+                            AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                    if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                        // We have audio focus now.
+
+                        // Create and setup the {@link MediaPlayer} for the audio resource associated
+                        // with the current word
+                        mMediaPlayer = MediaPlayer.create(ColorsActivity.this, word.getAudioResourceId());
+
+                        // Start the audio file
+                        mMediaPlayer.start();
+
+                        // Setup a listener on the media player, so that we can stop and release the
+                        // media player once the sound has finished playing.
+                        mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                    }
+                }
+            });
     }
 
     @Override
